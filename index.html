@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+		<title>MonMon</title>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/gauge.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="grid-item big">
+				<div class="stage stage--main">
+					<section class="gauge-assembly">
+						<div class="gauge-container">
+							<div class="increments-wrapper">
+								<span class="increment increment-0 monochrome-primary increment--on">0</span><span class="increment increment-1 monochrome-primary increment--on">10</span
+								><span class="increment increment-2 monochrome-primary increment--on">25</span><span class="increment increment-3 monochrome-primary increment--on">50</span
+								><span class="increment increment-4 monochrome-primary increment--on">75</span><span class="increment increment-5 monochrome-primary increment--on">100</span
+								><span class="increment increment-6 monochrome-primary increment--on">150</span><span class="increment increment-7 monochrome-secondary increment--off">200</span
+								><span class="increment increment-8 monochrome-secondary increment--off">250</span>
+							</div>
+							<div class="gauge-needle" style="transform: translate3d(-50%, -44%, 0px) rotateZ(274.228deg)">
+								<svg width="120" height="801" viewBox="0 0 120 801" xmlns="http://www.w3.org/2000/svg">
+									<defs>
+										<linearGradient id="needleGradient" x1="0" x2="0" y1="0" y2="1">
+											<stop class="stop1" stop-opacity="0" stop-color="transparent" offset="40%"></stop>
+											<stop class="stop1" stop-opacity="0.95" stop-color="currentColor" offset="100%"></stop>
+										</linearGradient>
+									</defs>
+									<path d="M95 800.5l-34.25-.958H26.5L0 .5h120l-25 800z" fill="url(#needleGradient)"></path>
+								</svg>
+							</div>
+							<div class="gauge">
+								<div class="gauge-path">
+									<svg width="110%" height="110%" viewBox="0 0 100 100">
+										<circle class="gauge-path-background stroke-background" r="43" cx="50%" cy="50%"></circle>
+										<circle class="gauge-path-current-speed stroke-primary" r="43" cx="50%" cy="50%" stroke-dashoffset="231.44309473684208px"></circle>
+										<circle class="gauge-path-loading stroke-background" r="43" cx="50%" cy="50%"></circle>
+									</svg>
+								</div>
+							</div>
+						</div>
+						<div class="speed-assembly monochrome-primary">
+							<div class="number monochrome-primary"><span>185.6</span></div>
+							<span class="unit monochrome-secondary">Mbps<br />实时下行</span>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="grid-item sync-fontsize">
+				<div class="title">CPU 温度</div>
+				<div class="content number">35 <span class="degree"></span>C</div>
+			</div>
+			<div class="grid-item">
+				<div class="title">GPU 温度</div>
+				<div class="content number">35 <span class="degree"></span>C</div>
+			</div>
+			<div class="grid-item sync-fontsize">
+				<div class="title">CPU 使用率</div>
+				<div class="content number">15%</div>
+			</div>
+			<div class="grid-item">
+				<div class="title">GPU 使用率</div>
+				<div class="content number">1%</div>
+			</div>
+			<div class="grid-item sync-fontsize">
+				<div class="title">内存占用</div>
+				<div class="content number">7.8/16 GB</div>
+			</div>
+			<div class="grid-item">
+				<div class="title">风扇转速</div>
+				<div class="content number">1800<span> RPM</span></div>
+			</div>
+			<div class="grid-item grid-item-time">
+				<div class="time">
+					<span class="weak">周四</span>
+					<span class="strong number">23:57</span>
+				</div>
+			</div>
+			<div class="grid-item sync-fontsize">
+				<div class="title">明天天气</div>
+				<div class="content number">33 <span class="degree"></span>C Cloudy</div>
+			</div>
+			<div class="grid-item" onclick="document.body.requestFullscreen();">
+				<div class="title">当前 FPS</div>
+				<div class="content number">215</div>
+			</div>
+		</div>
+		<script src="js/main.js"></script>
+	</body>
+</html>

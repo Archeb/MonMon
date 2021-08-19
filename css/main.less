@@ -1,0 +1,92 @@
+@font-face {
+	font-family: gauge-mono-regular;
+	src: url(../fonts/gaugemono-regular-webfont.woff2) format("woff2"), url(../fonts/gaugemono-regular-webfont.woff) format("woff");
+}
+@font-face {
+	font-family: OstrichSans-Medium;
+	src: url(../fonts/OstrichSans-Medium.otf);
+}
+
+body {
+	margin: 0;
+	background-color: black;
+	font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+
+	color: rgba(255, 255, 255, 0.75);
+}
+.container {
+	width: 100%;
+	height: 98vh;
+	display: grid;
+	transform: translate(-5px, 1vh);
+	grid-template-rows: repeat(4, 24.5vh);
+	grid-template-columns: 50vw 25vw 25vw;
+	.grid-item.big {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 1;
+		grid-row-end: 4;
+		.stage {
+			justify-content: center;
+			width: 100%;
+			align-items: center;
+			height: 100%;
+			.number.monochrome-primary {
+				font-size: 10vh;
+			}
+		}
+	}
+	.grid-item {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		padding: 10px;
+		transition: all 0.3s;
+		.title {
+			font-size: 5vh;
+		}
+		.time {
+			text-align: center;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.weak {
+				font-size: 7vh;
+			}
+			.strong {
+				font-size: 11vh;
+				margin-top: 2vh;
+				color: white;
+			}
+		}
+		.content {
+			margin-top: 2vh;
+			font-size: 10vh;
+			color: white;
+			width: fit-content;
+			height: fit-content;
+			white-space: nowrap;
+		}
+		.number {
+			font-weight: 100;
+			font-family: Gauge, "OstrichSans-Medium";
+		}
+		.degree {
+			border: 0.3vh solid;
+			height: 3px;
+			width: 3px;
+			border-radius: 50%;
+			margin-left: -2vh;
+			position: absolute;
+		}
+		&:hover {
+			box-shadow: 0 0 0px 1px rgba(255, 255, 255, 0.25);
+			background-color: #333333;
+		}
+	}
+	.grid-item-time {
+		margin-top: -3vh;
+		z-index: 10;
+	}
+}
