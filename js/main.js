@@ -69,6 +69,7 @@ setInterval(() => {
 	document.querySelector(".time .weak").innerHTML = days[myDate.getDay()];
 	splitter = parseInt(myDate.getTime() / 1000) % 2 ? "<span style='opacity:0'>:</span>" : ":";
 	document.querySelector(".time .strong").innerHTML = myDate.getHours() + splitter + String(myDate.getMinutes()).padStart(2, "0");
+	updateSeneorData();
 }, 1000);
 
 function changeGauge(speed) {
@@ -97,6 +98,8 @@ function changeGauge(speed) {
 			targetPixel -= increment == 0 ? 0 : 25.3125;
 			document.querySelectorAll(".increments-wrapper span.increment")[index].classList.remove("increment--off");
 			document.querySelectorAll(".increments-wrapper span.increment")[index].classList.add("increment--on");
+		} else if (speed == 0) {
+			targetDegree += 45;
 		} else {
 			targetDegree += ((speed - currentScale[index - 1]) / (increment - currentScale[index - 1])) * 33.75;
 			targetPixel -= ((speed - currentScale[index - 1]) / (increment - currentScale[index - 1])) * 25.3125;
@@ -113,4 +116,25 @@ function changeGauge(speed) {
 	}
 	document.querySelector(".gauge-path-current-speed ").setAttribute("stroke-dashoffset", targetPixel + "px");
 	document.querySelector(".gauge-needle").style.transform = "translate3d(-50%, -44%, 0px) rotateZ(" + targetDegree + "deg)";
+}
+function updateSeneorData() {
+	fetch("http://192.168.42.130:55555/")
+		.then((d) => d.json())
+		.then((sensorData) => {
+			let sensorDataObject = {};
+			for (item of sensorData) {
+				sensorDataObject[item.SensorName] = item.SensorValue;
+			}
+			CPUUtilization.innerHTML = sensorDataObject["CPU Utilization (SCPUUTI)"] + "%";
+			GPUUtilization.innerHTML = sensorDataObject["GPU Utilization (SGPU1UTI)"] + "%";
+			CPUTemp.innerHTML = sensorDataObject["CPU (TCPU)"];
+			GPUTemp.innerHTML = sensorDataObject["GPU Diode (TGPU1DIO)"];
+			MemoryUsage.innerHTML =
+				(parseFloat(sensorDataObject["Used Memory (SUSEDMEM)"]) / 1024).toFixed(1) +
+				"/" +
+				((parseFloat(sensorDataObject["Used Memory (SUSEDMEM)"]) + parseFloat(sensorDataObject["Free Memory (SFREEMEM)"])) / 1024).toFixed(1) +
+				" GB";
+			FanSpeed.innerHTML = sensorDataObject["CPU (FCPU)"] + " RPM";
+			changeGauge((parseFloat(sensorDataObject["NIC3 Download Rate (SNIC3DLRATE)"]) / 125).toFixed(1)); // 这指针会顺时针扭到0，得想办法修一修
+		});
 }
