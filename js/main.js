@@ -69,9 +69,8 @@ setInterval(() => {
 	document.querySelector(".time .weak").innerHTML = days[myDate.getDay()];
 	splitter = parseInt(myDate.getTime() / 1000) % 2 ? "<span style='opacity:0'>:</span>" : ":";
 	document.querySelector(".time .strong").innerHTML = myDate.getHours() + splitter + String(myDate.getMinutes()).padStart(2, "0");
-	updateSeneorData();
 }, 1000);
-
+setInterval(updateSeneorData, 1000);
 function changeGauge(speed) {
 	let currentScale;
 	if (speed < 100) {
@@ -135,6 +134,6 @@ function updateSeneorData() {
 				((parseFloat(sensorDataObject["Used Memory (SUSEDMEM)"]) + parseFloat(sensorDataObject["Free Memory (SFREEMEM)"])) / 1024).toFixed(1) +
 				" GB";
 			FanSpeed.innerHTML = sensorDataObject["CPU (FCPU)"] + " RPM";
-			changeGauge((parseFloat(sensorDataObject["NIC3 Download Rate (SNIC3DLRATE)"]) / 125).toFixed(1)); // 这指针会顺时针扭到0，得想办法修一修
+			changeGauge((parseFloat(sensorDataObject["NIC3 Download Rate (SNIC3DLRATE)"]) / 125 + 0.1).toFixed(1)); // 这指针会顺时针扭到0，得想办法修一修
 		});
 }
