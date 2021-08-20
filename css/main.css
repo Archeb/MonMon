@@ -6,11 +6,15 @@
   font-family: OstrichSans-Medium;
   src: url(../fonts/OstrichSans-Medium.otf);
 }
+@font-face {
+  font-family: 幼圆;
+  src: url(../fonts/YouYuan.ttf);
+}
 body {
   margin: 0;
   background-color: black;
   font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.5);
 }
 .container {
   width: 100%;
@@ -19,21 +23,6 @@ body {
   transform: translate(-5px, 1vh);
   grid-template-rows: repeat(4, 24.5vh);
   grid-template-columns: 50vw 25vw 25vw;
-}
-.container .grid-item.big {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 4;
-}
-.container .grid-item.big .stage {
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  height: 100%;
-}
-.container .grid-item.big .stage .number.monochrome-primary {
-  font-size: 10vh;
 }
 .container .grid-item {
   display: flex;
@@ -45,32 +34,27 @@ body {
 .container .grid-item .title {
   font-size: 5vh;
 }
-.container .grid-item .time {
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container .grid-item .time .weak {
-  font-size: 7vh;
-}
-.container .grid-item .time .strong {
-  font-size: 11vh;
-  margin-top: 2vh;
+.container .grid-item .title .emoji {
   color: white;
 }
 .container .grid-item .content {
-  margin-top: 2vh;
+  margin-top: 3vh;
   font-size: 10vh;
   color: white;
   width: fit-content;
   height: fit-content;
   white-space: nowrap;
 }
+.container .grid-item .content .icon {
+  display: inline;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: -1vh;
+}
 .container .grid-item .number {
   font-weight: 100;
-  font-family: Gauge, "OstrichSans-Medium";
+  color: white;
+  font-family: Gauge, "OstrichSans-Medium", "幼圆";
 }
 .container .grid-item .degree {
   border: 0.3vh solid;
@@ -81,10 +65,47 @@ body {
   position: absolute;
 }
 .container .grid-item:hover {
-  box-shadow: 0 0 0px 1px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0px 2px rgba(255, 255, 255, 0.25);
   background-color: #333333;
 }
-.container .grid-item-time {
+.container .time {
   margin-top: -3vh;
   z-index: 10;
+  text-align: center;
+  width: 100%;
+  margin-left: -6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .time .weak {
+  font-size: 7vh;
+}
+.container .time .strong {
+  font-size: 11vh;
+  margin-top: 3vh;
+  color: white;
+}
+.container .time:hover {
+  box-shadow: none;
+  background-color: inherit;
+}
+.container .big {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+.container .big .stage {
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
+.container .big .stage .number.monochrome-primary {
+  font-size: 10vh;
+}
+.container .big:hover {
+  box-shadow: none;
+  background-color: inherit;
 }
