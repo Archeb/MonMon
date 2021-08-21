@@ -92,13 +92,11 @@ function changeGauge(speed) {
 	let targetDegree = 0;
 	let targetPixel = 404;
 	for (let [index, increment] of currentScale.entries()) {
-		if (speed > increment) {
+		if (speed >= increment) {
 			targetDegree += increment == 0 ? 45 : 33.75;
 			targetPixel -= increment == 0 ? 0 : 25.3125;
 			document.querySelectorAll(".increments-wrapper span.increment")[index].classList.remove("increment--off");
 			document.querySelectorAll(".increments-wrapper span.increment")[index].classList.add("increment--on");
-		} else if (speed == 0) {
-			targetDegree += 45;
 		} else {
 			targetDegree += ((speed - currentScale[index - 1]) / (increment - currentScale[index - 1])) * 33.75;
 			targetPixel -= ((speed - currentScale[index - 1]) / (increment - currentScale[index - 1])) * 25.3125;
@@ -134,6 +132,6 @@ function updateSeneorData() {
 				((parseFloat(sensorDataObject["Used Memory (SUSEDMEM)"]) + parseFloat(sensorDataObject["Free Memory (SFREEMEM)"])) / 1024).toFixed(1) +
 				" GB";
 			FanSpeed.innerHTML = sensorDataObject["CPU (FCPU)"] + " RPM";
-			changeGauge((parseFloat(sensorDataObject["NIC3 Download Rate (SNIC3DLRATE)"]) / 125 + 0.1).toFixed(1)); // 这指针会顺时针扭到0，得想办法修一修
+			changeGauge((parseFloat(sensorDataObject["NIC3 Download Rate (SNIC3DLRATE)"]) / 125).toFixed(1)); // 这指针会顺时针扭到0，得想办法修一修
 		});
 }
